@@ -1,4 +1,4 @@
-# Lucien_soon
+# Lucien
 
 Your Story. Your Feelings. Your AI Drama.
 

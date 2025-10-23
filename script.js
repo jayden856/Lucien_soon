@@ -672,3 +672,105 @@ document.head.appendChild(enhancedEffectsStyle);
 
 console.log('Lucien is ready to launch with spectacular effects!');
 
+// Email Waitlist Validation and Submission
+const emailInput = document.getElementById('waitlistEmail');
+const joinBtn = document.getElementById('joinWaitlistBtn');
+const feedback = document.getElementById('emailFeedback');
+
+// Email validation function
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Show feedback message
+function showFeedback(message, isSuccess) {
+    feedback.textContent = message;
+    feedback.style.opacity = '1';
+    
+    if (isSuccess) {
+        feedback.className = 'text-sm font-normal opacity-100 transition-all duration-300 min-h-[20px] text-green-400';
+    } else {
+        feedback.className = 'text-sm font-normal opacity-100 transition-all duration-300 min-h-[20px] text-red-400';
+    }
+    
+    // Hide feedback after 5 seconds for success messages
+    if (isSuccess) {
+        setTimeout(() => {
+            feedback.style.opacity = '0';
+        }, 5000);
+    }
+}
+
+// Handle Join Waitlist button click
+joinBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    
+    // Validate email
+    if (!email) {
+        showFeedback('Please enter your email address', false);
+        emailInput.focus();
+        return;
+    }
+    
+    if (!isValidEmail(email)) {
+        showFeedback('Please enter a valid email address', false);
+        emailInput.focus();
+        return;
+    }
+    
+    // Disable button and show loading state
+    joinBtn.disabled = true;
+    const originalText = joinBtn.querySelector('span').textContent;
+    joinBtn.querySelector('span').textContent = 'Joining...';
+    
+    try {
+        // Here you would typically send the email to your backend API
+        // For now, we'll simulate an API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Store email in localStorage (optional, for demonstration)
+        const waitlist = JSON.parse(localStorage.getItem('waitlist') || '[]');
+        
+        // Check if email already exists
+        if (waitlist.includes(email)) {
+            showFeedback('This email is already on the waitlist!', false);
+        } else {
+            waitlist.push(email);
+            localStorage.setItem('waitlist', JSON.stringify(waitlist));
+            showFeedback('🎉 Successfully joined the waitlist! We\'ll be in touch soon.', true);
+            emailInput.value = '';
+        }
+        
+        // TODO: Replace this with your actual API call
+        // Example:
+        // const response = await fetch('YOUR_API_ENDPOINT', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ email })
+        // });
+        // const data = await response.json();
+        
+    } catch (error) {
+        showFeedback('Something went wrong. Please try again.', false);
+        console.error('Error joining waitlist:', error);
+    } finally {
+        // Re-enable button
+        joinBtn.disabled = false;
+        joinBtn.querySelector('span').textContent = originalText;
+    }
+});
+
+// Allow Enter key to submit
+emailInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        joinBtn.click();
+    }
+});
+
+// Clear error message when user starts typing
+emailInput.addEventListener('input', () => {
+    if (feedback.style.opacity === '1' && feedback.classList.contains('text-red-400')) {
+        feedback.style.opacity = '0';
+    }
+});
