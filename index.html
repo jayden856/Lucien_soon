@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucien</title>
+    <link rel="icon" type="image/png" href="image/lucien logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="font-inter bg-dark-bg text-text-primary overflow-x-hidden leading-normal font-normal antialiased">
+    <!-- Header -->
+    <header class="cr-header sticky top-0 bg-black/50 z-[100] transform translate-y-0">
+        <div class="flex items-center justify-between py-[0.1rem] px-4 max-w-[1200px] mx-auto max-[480px]:px-2">
+            <!-- Logo and Campaign -->
+            <div class="flex items-center gap-8 max-md:gap-4 max-[480px]:gap-2 max-[380px]:gap-1">
+                <a href="index.html" class="no-underline block">
+                    <div class="flex items-center cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105">
+                        <img src="image/lucien logo.png" alt="Lucien Logo" class="h-[70px] w-auto max-[480px]:h-[50px] max-[380px]:h-[45px]">
+                    </div>
+                </a>
+                <a href="#coming-soon-section">
+                    <button class="font-inter bg-transparent text-white border-2 border-white py-[0.6rem] px-[1.8rem] rounded-[50px] text-[0.9rem] font-semibold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden tracking-[0.5px] hover:bg-white/10 hover:border-white hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(255,255,255,0.3)] whitespace-nowrap max-[480px]:py-[0.5rem] max-[480px]:px-4 max-[480px]:text-[0.75rem] max-[380px]:py-[0.45rem] max-[380px]:px-3 max-[380px]:text-[0.7rem]">
+                        <span class="relative z-[1]">Campaign</span>
+                    </button>
+                </a>
+            </div>
+            
+            <!-- Lucien Token Button -->
+            <a href="https://app.virtuals.io/virtuals/32393" target="_blank" rel="noopener noreferrer">
+                <button class="font-inter bg-[#FFDE59] text-black border-none py-[0.6rem] px-[1.8rem] rounded-[50px] text-[0.9rem] font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden tracking-[0.5px] border-2 border-[#FFDE59] shadow-[0_4px_15px_rgba(255,222,89,0.3)] hover:bg-[#ffd700] hover:border-[#ffd700] hover:-translate-y-0.5 hover:shadow-[0_6px_25px_rgba(255,222,89,0.5)] whitespace-nowrap max-[480px]:py-[0.5rem] max-[480px]:px-4 max-[480px]:text-[0.75rem] max-[380px]:py-[0.45rem] max-[380px]:px-3 max-[380px]:text-[0.7rem]">
+                    <span class="relative z-[1]">Lucien Token</span>
+                </button>
+            </a>
+        </div>
+    </header>
+
+    <!-- Landing Page -->
+    <div>
+        <div>
+            
+        <!-- Hero Section -->
+            <div>
+                <section class="cr-start-hero relative min-h-screen flex items-center justify-center overflow-hidden -mt-16 pt-16 pb-16" data-t="start-hero-section">
+                    <!-- Background Video -->
+                    <video class="absolute top-0 left-0 w-full h-full object-cover z-0" autoplay loop muted playsinline>
+                        <source src="image/Movieshow.mp4" type="video/mp4">
+                    </video>
+                    
+                    <!-- Hero Content -->
+                    <div class="relative z-[2] max-w-[1200px] mx-auto px-8">
+                        <div class="text-center max-w-[900px] mx-auto max-md:px-6 max-[480px]:px-4">
+                            <h1 class="animate-fade-in text-[4rem] font-black leading-[1.5] mb-10 text-white max-xl:text-5xl max-md:text-[2.5rem] max-md:mb-7 max-[700px]:text-[2.5rem] max-[700px]:mb-6 max-[600px]:text-[1.8rem] max-[600px]:mb-5 max-[480px]:text-[1.5rem] max-[480px]:mb-5 max-[380px]:text-[1.3rem]">
+                                <span class="block whitespace-nowrap">Your Story. Your Feelings.</span>
+                                <span class="block whitespace-nowrap">Your AI Drama.</span>
+                            </h1>
+                            <p class="animate-fade-in-delay text-2xl text-white mb-10 font-normal max-md:text-[1.2rem] max-md:mb-7 max-[480px]:text-base max-[480px]:mb-5 max-[700px]:text-[1.3rem] max-[700px]:mb-6 max-[600px]:text-[1.1rem] max-[600px]:mb-5">
+                                No two stories are ever the same.
+                            </p>
+                            <p class="animate-fade-in-delay text-lg text-white mb-1 font-light opacity-90 max-md:text-[0.95rem] max-md:mb-1 max-[480px]:text-[0.85rem] max-[480px]:mb-1 max-[700px]:text-base max-[700px]:mb-1 max-[600px]:text-[0.9rem] max-[600px]:mb-1">
+                                Every scene, every emotion — uniquely generated for you.
+                            </p>
+                            <div class="animate-fade-in-delay-2 mt-8 flex justify-center items-center gap-2 max-md:mt-6 max-md:gap-1 max-[480px]:px-2">
+                                <input type="email" placeholder="Email address" class="py-4 px-5 text-[1rem] font-normal bg-black/60 text-white border border-gray-500/60 backdrop-blur-sm rounded-[4px] transition-all duration-300 ease-in-out placeholder:text-gray-400 focus:outline-none focus:border-white focus:bg-black/80 w-[550px] min-h-[56px] max-md:w-[280px] max-md:py-3 max-md:px-4 max-[480px]:w-[200px] max-[480px]:text-[0.85rem] max-[480px]:py-3 max-[480px]:px-3">
+                                <button class="py-4 px-10 text-[1.1rem] font-bold bg-[#FFDE59] text-black border-2 border-[#FFDE59] shadow-[0_4px_20px_rgba(255,222,89,0.4)] transition-all duration-300 ease-in-out whitespace-nowrap rounded-[50px] hover:bg-[#FFD700] hover:border-[#FFD700] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,222,89,0.6)] max-md:py-3 max-md:px-6 max-md:text-[0.95rem] max-[480px]:py-3 max-[480px]:px-4 max-[480px]:text-[0.8rem]">
+                                    <span class="relative z-[1]">Join Waitlist</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Coming Soon Section -->
+    <section id="coming-soon-section" class="cr-coming-soon-section bg-black min-h-screen flex items-center justify-center relative overflow-hidden [perspective:1000px]">
+        <div class="relative z-[2] max-w-[1200px] mx-auto px-8">
+            <!-- Animated Rings around text -->
+            <div class="pulse-rings absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] pointer-events-none">
+                <div class="pulse-ring ring-1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-[rgba(255,222,89,0.2)] rounded-full w-[300px] h-[300px] shadow-[0_0_8px_rgba(255,222,89,0.12),inset_0_0_8px_rgba(255,222,89,0.08)] max-md:w-[200px] max-md:h-[200px] max-[480px]:w-[150px] max-[480px]:h-[150px]"></div>
+                <div class="pulse-ring ring-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-[rgba(255,184,0,0.18)] rounded-full w-[350px] h-[350px] shadow-[0_0_10px_rgba(255,184,0,0.12),inset_0_0_10px_rgba(255,184,0,0.08)] max-md:w-[240px] max-md:h-[240px] max-[480px]:w-[180px] max-[480px]:h-[180px]"></div>
+                <div class="pulse-ring ring-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-[rgba(255,94,0,0.15)] rounded-full w-[400px] h-[400px] shadow-[0_0_12px_rgba(255,94,0,0.12),inset_0_0_12px_rgba(255,94,0,0.08)] max-md:w-[280px] max-md:h-[280px] max-[480px]:w-[210px] max-[480px]:h-[210px]"></div>
+            </div>
+            
+            <h2 class="neon-title animate-on-scroll text-[6.5rem] font-black text-center m-0 p-8 relative z-10 [transform-style:preserve-3d] max-xl:text-[5rem] max-md:text-[3.5rem] max-md:p-6 max-[600px]:text-[2.8rem] max-[480px]:text-[2.2rem] max-[480px]:p-4 max-[380px]:text-[1.8rem]">
+                <span class="neon-text relative inline-block text-black uppercase tracking-[0.15em] cursor-pointer transition-[transform,text-shadow] duration-300 ease-in-out hover:scale-105 active:scale-95 whitespace-nowrap max-[480px]:tracking-[0.08em] max-[380px]:tracking-[0.05em]" data-text="COMING SOON" id="comingSoonText">
+                    COMING SOON
+                </span>
+            </h2>
+            
+            <!-- Subtitle with date/info -->
+            <p class="text-2xl text-white text-center mt-8 tracking-[0.1em] [text-shadow:0_0_3px_rgba(255,255,255,0.1),1px_1px_2px_rgba(0,0,0,0.5)] z-10 relative whitespace-nowrap max-xl:text-[1.3rem] max-md:text-[1rem] max-md:px-2 max-md:tracking-[0.05em] max-[480px]:text-[0.75rem] max-[480px]:mt-6 max-[480px]:tracking-[0.02em]">
+                <img src="image/lucien logo.png" alt="Lucien" class="subtitle-icon inline-block h-6 w-auto align-middle mx-2 max-md:h-[1rem] max-md:mx-1 max-[480px]:h-3 max-[480px]:mx-1">
+                Something Amazing is on the Horizon
+                <img src="image/lucien logo.png" alt="Lucien" class="subtitle-icon inline-block h-6 w-auto align-middle mx-2 max-md:h-[1rem] max-md:mx-1 max-[480px]:h-3 max-[480px]:mx-1">
+            </p>
+        </div>
+
+        <!-- Advanced Background Effects -->
+        <div class="background-effects absolute top-0 left-0 w-full h-full z-[1] overflow-hidden">
+            <div class="gradient-orb orb-1 absolute rounded-full blur-[100px] opacity-25 w-[600px] h-[600px] bg-[radial-gradient(circle,#FF5E00_0%,transparent_70%)] -top-[300px] -left-[300px] max-xl:w-[500px] max-xl:h-[500px] max-md:w-[400px] max-md:h-[400px] max-md:blur-[80px] max-[480px]:w-[250px] max-[480px]:h-[250px] max-[480px]:blur-[40px]"></div>
+            <div class="gradient-orb orb-2 absolute rounded-full blur-[100px] opacity-25 w-[500px] h-[500px] bg-[radial-gradient(circle,#FFB800_0%,transparent_70%)] -bottom-[250px] -right-[250px] max-xl:w-[400px] max-xl:h-[400px] max-md:w-[350px] max-md:h-[350px] max-md:blur-[80px] max-[480px]:w-[200px] max-[480px]:h-[200px] max-[480px]:blur-[40px]"></div>
+            <div class="gradient-orb orb-3 absolute rounded-full blur-[100px] opacity-25 w-[700px] h-[700px] bg-[radial-gradient(circle,#FF3D00_0%,transparent_70%)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-xl:w-[550px] max-xl:h-[550px] max-md:w-[450px] max-md:h-[450px] max-md:blur-[80px] max-[480px]:w-[300px] max-[480px]:h-[300px] max-[480px]:blur-[40px]"></div>
+            <div class="gradient-orb orb-4 absolute rounded-full blur-[100px] opacity-25 w-[550px] h-[550px] bg-[radial-gradient(circle,#FFDE59_0%,transparent_70%)] top-[60%] left-[20%]"></div>
+            <div class="grid-overlay absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(255,94,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,94,0,0.02)_1px,transparent_1px)] bg-[length:50px_50px] opacity-20 max-[480px]:bg-[length:30px_30px]"></div>
+            
+            <!-- Animated Stars -->
+            <div class="stars-container absolute w-full h-full top-0 left-0 pointer-events-none z-[3]">
+                <div class="star star-1 absolute text-[2rem] text-[#FFDE59] opacity-0 [text-shadow:0_0_3px_rgba(255,222,89,0.25)] top-[15%] left-[10%] max-md:text-2xl max-[480px]:text-[1.2rem]">★</div>
+                <div class="star star-2 absolute text-[2rem] text-[#FFDE59] opacity-0 [text-shadow:0_0_3px_rgba(255,222,89,0.25)] top-[25%] right-[15%] max-md:text-2xl max-[480px]:text-[1.2rem]">★</div>
+                <div class="star star-3 absolute text-[2rem] text-[#FFDE59] opacity-0 [text-shadow:0_0_3px_rgba(255,222,89,0.25)] bottom-[20%] left-[20%] max-md:text-2xl max-[480px]:text-[1.2rem]">★</div>
+                <div class="star star-4 absolute text-[2rem] text-[#FFDE59] opacity-0 [text-shadow:0_0_3px_rgba(255,222,89,0.25)] bottom-[30%] right-[10%] max-md:text-2xl max-[480px]:text-[1.2rem]">★</div>
+                <div class="star star-5 absolute text-[2rem] text-[#FFDE59] opacity-0 [text-shadow:0_0_3px_rgba(255,222,89,0.25)] top-[40%] left-1/2 max-md:text-2xl max-[480px]:text-[1.2rem]">★</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Particles Background -->
+    <div class="particles-container fixed top-0 left-0 w-full h-full pointer-events-none z-0" id="particles"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
