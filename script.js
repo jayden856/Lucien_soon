@@ -1,3 +1,49 @@
+// ===== SUPABASE CONFIGURATION =====
+// Replace these with your actual Supabase credentials
+const SUPABASE_URL = 'https://vdiysqfdjrthypynamgx.supabase.co'; // Example: 'https://xxxxxxxxxxxxx.supabase.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkaXlzcWZkanJ0aHlweW5hbWd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzOTg5NzUsImV4cCI6MjA2OTk3NDk3NX0.zIDjLh6oqDWjdIjavDoFIDbqVM6vfqafHKTy80tw46I'; // Your Supabase anon/public key
+
+// Initialize Supabase client
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Test Supabase connection on page load
+async function testSupabaseConnection() {
+    console.log('Testing Supabase connection...');
+    console.log('Supabase URL:', SUPABASE_URL);
+    
+    try {
+        const { data, error } = await supabase
+            .from('email')
+            .select('count')
+            .limit(1);
+        
+        if (error) {
+            console.error('Supabase connection test failed:', error);
+            console.error('Error message:', error.message);
+            console.error('Error code:', error.code);
+            console.error('Error details:', JSON.stringify(error, null, 2));
+            
+            // Common issues
+            if (error.message.includes('relation') || error.message.includes('does not exist')) {
+                console.error('Table "email" does not exist or is not accessible');
+            }
+            if (error.message.includes('permission') || error.code === '42501') {
+                console.error('Permission denied. Check your RLS (Row Level Security) policies');
+            }
+        } else {
+            console.log('Supabase connection successful!');
+            console.log('Connected to table "email"');
+        }
+    } catch (err) {
+        console.error('Failed to test Supabase connection:', err);
+    }
+}
+
+// Run connection test when page loads
+if (typeof window !== 'undefined') {
+    window.addEventListener('DOMContentLoaded', testSupabaseConnection);
+}
+
 // Header Scroll Effect with Auto Hide/Show
 let lastScrollTop = 0;
 let scrollTimer = null;
@@ -672,16 +718,224 @@ document.head.appendChild(enhancedEffectsStyle);
 
 console.log('Lucien is ready to launch with spectacular effects!');
 
+// Responsive Video Optimization for all devices
+function optimizeHeroVideo() {
+    const video = document.getElementById('heroVideo');
+    const heroSection = document.querySelector('.cr-start-hero');
+    
+    if (!video || !heroSection) return;
+    
+    function adjustVideoDisplay() {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        // Reset all inline styles that might interfere
+        heroSection.style.cssText = '';
+        video.style.cssText = '';
+        
+        // Force basic positioning
+        video.style.position = 'absolute';
+        video.style.top = '0';
+        video.style.left = '0';
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'cover';
+        video.style.zIndex = '0';
+        
+        // Device-specific optimizations
+        if (viewportWidth <= 480) {
+            // Mobile phones - Force exact pixel height
+            const exactHeight = `${viewportHeight}px`;
+            
+            // Hero section
+            heroSection.style.position = 'relative';
+            heroSection.style.width = '100vw';
+            heroSection.style.minHeight = exactHeight;
+            heroSection.style.height = exactHeight;
+            heroSection.style.maxHeight = exactHeight;
+            heroSection.style.margin = '0';
+            heroSection.style.padding = '0';
+            heroSection.style.overflow = 'hidden';
+            heroSection.style.display = 'flex';
+            heroSection.style.alignItems = 'center';
+            heroSection.style.justifyContent = 'center';
+            
+            // Video
+            video.style.minHeight = exactHeight;
+            video.style.maxHeight = exactHeight;
+            
+            // Adjust for portrait vs landscape
+            if (viewportHeight > viewportWidth) {
+                // Portrait mode
+                if (viewportWidth <= 375 && viewportHeight <= 667) {
+                    // iPhone SE and similar
+                    video.style.objectPosition = 'center 35%';
+                } else {
+                    video.style.objectPosition = 'center 40%';
+                }
+            } else {
+                // Landscape mode
+                video.style.objectPosition = 'center center';
+            }
+            
+            console.log(`Mobile optimized: ${viewportWidth}x${viewportHeight}, exact height: ${exactHeight}`);
+        } else if (viewportWidth <= 768) {
+            // Tablets (portrait)
+            heroSection.style.minHeight = '100vh';
+            heroSection.style.height = '100vh';
+            heroSection.style.maxHeight = '100vh';
+            video.style.objectPosition = 'center center';
+        } else if (viewportWidth <= 1024) {
+            // Tablets (landscape) and small laptops
+            heroSection.style.minHeight = '100vh';
+            heroSection.style.height = '100vh';
+            heroSection.style.maxHeight = '100vh';
+            video.style.objectPosition = 'center center';
+        } else {
+            // Desktop and large laptops
+            heroSection.style.minHeight = '100vh';
+            heroSection.style.height = '100vh';
+            heroSection.style.maxHeight = '100vh';
+            video.style.objectPosition = 'center center';
+        }
+        
+        console.log(`Video optimized for ${viewportWidth}x${viewportHeight}`);
+    }
+    
+    // Ensure video plays on all devices
+    const playVideo = () => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('Video autoplay prevented:', error);
+                // Try to play on user interaction
+                document.addEventListener('click', () => {
+                    video.play().catch(e => console.log('Play after click failed:', e));
+                }, { once: true });
+                
+                document.addEventListener('touchstart', () => {
+                    video.play().catch(e => console.log('Play after touch failed:', e));
+                }, { once: true });
+            });
+        }
+    };
+    
+    // Wait for video metadata to load
+    if (video.readyState >= 1) {
+        adjustVideoDisplay();
+        playVideo();
+    } else {
+        video.addEventListener('loadedmetadata', () => {
+            adjustVideoDisplay();
+            playVideo();
+        });
+    }
+    
+    // Readjust on window resize and orientation change
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(adjustVideoDisplay, 250);
+    });
+    
+    window.addEventListener('orientationchange', () => {
+        setTimeout(adjustVideoDisplay, 300);
+    });
+    
+    // Handle mobile browser address bar hide/show
+    let lastHeight = window.innerHeight;
+    window.addEventListener('scroll', () => {
+        const currentHeight = window.innerHeight;
+        // Only adjust if height changed significantly (address bar hide/show)
+        if (Math.abs(currentHeight - lastHeight) > 50 && window.innerWidth <= 480) {
+            adjustVideoDisplay();
+            lastHeight = currentHeight;
+        }
+    });
+    
+    // Monitor video playback
+    video.addEventListener('playing', () => {
+        console.log('Hero video is playing');
+    });
+    
+    video.addEventListener('waiting', () => {
+        console.log('Hero video is buffering...');
+    });
+}
+
+// Initialize video optimization when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', optimizeHeroVideo);
+} else {
+    optimizeHeroVideo();
+}
+
 // Email Waitlist Validation and Submission
 const emailInput = document.getElementById('waitlistEmail');
 const joinBtn = document.getElementById('joinWaitlistBtn');
 const feedback = document.getElementById('emailFeedback');
 
-// Email validation function
+// Email validation function with strict rules
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    // Basic format check
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    if (!emailRegex.test(email)) {
+        return false;
+    }
+    
+    // Split email into parts
+    const parts = email.split('@');
+    if (parts.length !== 2) {
+        return false;
+    }
+    
+    const [localPart, domainPart] = parts;
+    
+    // Validate local part (before @)
+    // Must be at least 1 character
+    // Cannot start or end with a dot
+    if (localPart.length < 1 || localPart.startsWith('.') || localPart.endsWith('.')) {
+        return false;
+    }
+    
+    // Validate domain part (after @)
+    const domainParts = domainPart.split('.');
+    
+    // Must have at least 2 parts (e.g., example.com)
+    if (domainParts.length < 2) {
+        return false;
+    }
+    
+    // Check each domain part
+    for (const part of domainParts) {
+        // Each part must be at least 2 characters (except TLD can be 2+)
+        if (part.length < 2) {
+            return false;
+        }
+        
+        // Must contain only letters, numbers, and hyphens
+        if (!/^[a-zA-Z0-9-]+$/.test(part)) {
+            return false;
+        }
+        
+        // Cannot start or end with hyphen
+        if (part.startsWith('-') || part.endsWith('-')) {
+            return false;
+        }
+    }
+    
+    // Check top-level domain (TLD) - last part
+    const tld = domainParts[domainParts.length - 1];
+    
+    // TLD must be at least 2 characters and contain only letters
+    if (tld.length < 2 || !/^[a-zA-Z]+$/.test(tld)) {
+        return false;
+    }
+    
+    return true;
 }
+
 
 // Show feedback message
 function showFeedback(message, isSuccess) {
@@ -725,31 +979,51 @@ joinBtn.addEventListener('click', async () => {
     joinBtn.querySelector('span').textContent = 'Joining...';
     
     try {
-        // Here you would typically send the email to your backend API
-        // For now, we'll simulate an API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // First, check if email already exists in database
+        const { data: existingEmail, error: checkError } = await supabase
+            .from('email')
+            .select('*')
+            .eq('email_address', email)
+            .maybeSingle(); // Use maybeSingle() instead of single() to avoid error when no rows found
         
-        // Store email in localStorage (optional, for demonstration)
-        const waitlist = JSON.parse(localStorage.getItem('waitlist') || '[]');
-        
-        // Check if email already exists
-        if (waitlist.includes(email)) {
-            showFeedback('This email is already on the waitlist!', false);
-        } else {
-            waitlist.push(email);
-            localStorage.setItem('waitlist', JSON.stringify(waitlist));
-            showFeedback('🎉 Successfully joined the waitlist! We\'ll be in touch soon.', true);
-            emailInput.value = '';
+        if (checkError) {
+            // Log detailed error for debugging
+            showFeedback('Something went wrong. Please try again.', false);
+            console.error('Supabase check error:', checkError);
+            console.error('Error details:', JSON.stringify(checkError, null, 2));
+            return;
         }
         
-        // TODO: Replace this with your actual API call
-        // Example:
-        // const response = await fetch('YOUR_API_ENDPOINT', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ email })
-        // });
-        // const data = await response.json();
+        if (existingEmail) {
+            // Email already exists
+            showFeedback('This email is already on the waitlist!', false);
+            emailInput.value = '';
+            
+        } else {
+            // Email doesn't exist - insert new record
+            console.log('Attempting to insert email:', email);
+            
+            const { data, error } = await supabase
+                .from('email')
+                .insert([
+                    { email_address: email }
+                ])
+                .select();
+            
+            if (error) {
+                showFeedback('Something went wrong. Please try again.', false);
+                console.error('Supabase insert error:', error);
+                console.error('Error message:', error.message);
+                console.error('Error details:', JSON.stringify(error, null, 2));
+                console.error('Error hint:', error.hint);
+                console.error('Error code:', error.code);
+            } else {
+                // Successfully added to waitlist
+                showFeedback('Successfully joined the waitlist! We\'ll be in touch soon.', true);
+                emailInput.value = '';
+                console.log('Email added to waitlist successfully:', data);
+            }
+        }
         
     } catch (error) {
         showFeedback('Something went wrong. Please try again.', false);
@@ -774,3 +1048,4 @@ emailInput.addEventListener('input', () => {
         feedback.style.opacity = '0';
     }
 });
+
